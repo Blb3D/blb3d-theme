@@ -1,0 +1,427 @@
+/*
+ * BLB3D Custom Styles
+ * Brand layer on top of Dawn theme
+ * 
+ * Naming: BEM with blb3d- prefix
+ * .blb3d-[block]
+ * .blb3d-[block]__[element]
+ * .blb3d-[block]--[modifier]
+ */
+
+/* ==========================================================================
+   1. CSS VARIABLES - Brand Tokens
+   ========================================================================== */
+
+:root {
+  /* Primary Blue */
+  --blb3d-blue: #026DF8;
+  --blb3d-blue-dark: #0155c7;
+  --blb3d-blue-light: #3d8ff9;
+  
+  /* Accent Orange */
+  --blb3d-orange: #EE7A08;
+  --blb3d-orange-dark: #cc6a07;
+  --blb3d-orange-light: #f59a3a;
+  
+  /* Neutrals */
+  --blb3d-dark: #0F0F1E;
+  --blb3d-dark-lighter: #1a1a2e;
+  --blb3d-dark-border: #2a2a3e;
+  --blb3d-white: #FFFFFF;
+  --blb3d-gray-100: #F8F9FA;
+  --blb3d-gray-200: #E9ECEF;
+  --blb3d-gray-300: #DEE2E6;
+  --blb3d-gray-600: #6C757D;
+  --blb3d-gray-800: #343A40;
+  
+  /* Text */
+  --blb3d-text-muted: rgba(255, 255, 255, 0.7);
+  --blb3d-text-subtle: rgba(255, 255, 255, 0.5);
+  
+  /* Spacing */
+  --blb3d-section-padding: 80px;
+  --blb3d-section-padding-mobile: 48px;
+  --blb3d-container-max: 1200px;
+  
+  /* Transitions */
+  --blb3d-transition-fast: 150ms ease;
+  --blb3d-transition-base: 250ms ease;
+  
+  /* Border Radius */
+  --blb3d-radius-sm: 4px;
+  --blb3d-radius-md: 8px;
+  --blb3d-radius-lg: 12px;
+}
+
+
+/* ==========================================================================
+   2. TYPOGRAPHY
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h1, .h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); }
+h2, .h2 { font-size: clamp(2rem, 4vw, 2.75rem); }
+h3, .h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+
+/* Section Labels / Eyebrows */
+.blb3d-eyebrow {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--blb3d-orange);
+  margin-bottom: 1rem;
+}
+
+
+/* ==========================================================================
+   3. BUTTONS
+   ========================================================================== */
+
+/* Primary Button - Blue */
+.button--blb3d-primary,
+.blb3d-button--primary {
+  background: var(--blb3d-blue);
+  color: var(--blb3d-white);
+  padding: 16px 32px;
+  border-radius: var(--blb3d-radius-md);
+  font-weight: 600;
+  font-size: 1rem;
+  border: 2px solid var(--blb3d-blue);
+  cursor: pointer;
+  transition: all var(--blb3d-transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.button--blb3d-primary:hover,
+.blb3d-button--primary:hover {
+  background: var(--blb3d-blue-dark);
+  border-color: var(--blb3d-blue-dark);
+  transform: translateY(-2px);
+}
+
+/* Secondary Button - Orange Outline */
+.button--blb3d-secondary,
+.blb3d-button--secondary {
+  background: transparent;
+  color: var(--blb3d-orange);
+  padding: 14px 30px;
+  border-radius: var(--blb3d-radius-md);
+  font-weight: 600;
+  font-size: 1rem;
+  border: 2px solid var(--blb3d-orange);
+  cursor: pointer;
+  transition: all var(--blb3d-transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.button--blb3d-secondary:hover,
+.blb3d-button--secondary:hover {
+  background: var(--blb3d-orange);
+  color: var(--blb3d-white);
+  transform: translateY(-2px);
+}
+
+/* White Button (for colored backgrounds) */
+.button--blb3d-white,
+.blb3d-button--white {
+  background: var(--blb3d-white);
+  color: var(--blb3d-blue);
+  padding: 16px 32px;
+  border-radius: var(--blb3d-radius-md);
+  font-weight: 600;
+  font-size: 1rem;
+  border: 2px solid var(--blb3d-white);
+  cursor: pointer;
+  transition: all var(--blb3d-transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.button--blb3d-white:hover,
+.blb3d-button--white:hover {
+  background: var(--blb3d-gray-100);
+  border-color: var(--blb3d-gray-100);
+  transform: translateY(-2px);
+}
+
+
+/* ==========================================================================
+   4. HEADER OVERRIDES
+   ========================================================================== */
+
+/* Announcement bar */
+.announcement-bar {
+  background: var(--blb3d-dark) !important;
+  border-bottom: 1px solid var(--blb3d-dark-border);
+}
+
+.announcement-bar__message {
+  color: var(--blb3d-text-muted);
+}
+
+/* Main header */
+.header-wrapper {
+  background: var(--blb3d-dark);
+}
+
+.section-header {
+  background: var(--blb3d-dark);
+}
+
+.header {
+  background: var(--blb3d-dark);
+  border-bottom: 1px solid var(--blb3d-dark-border);
+}
+
+/* Override Dawn's color scheme for header */
+.section-header,
+.section-header .header-wrapper,
+.section-header .header {
+  --color-background: 15, 15, 30; /* blb3d-dark in RGB */
+  background-color: var(--blb3d-dark);
+}
+
+.header__heading-link {
+  color: var(--blb3d-white);
+}
+
+/* Navigation Links */
+.header__menu-item span,
+.header__menu-item a {
+  color: var(--blb3d-white);
+  font-weight: 500;
+  transition: color var(--blb3d-transition-fast);
+}
+
+.header__menu-item:hover span,
+.header__menu-item:hover a {
+  color: var(--blb3d-blue-light);
+}
+
+/* Header CTA Button */
+.header .blb3d-header-cta {
+  background: var(--blb3d-orange);
+  color: var(--blb3d-white);
+  padding: 10px 20px;
+  border-radius: var(--blb3d-radius-md);
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  transition: all var(--blb3d-transition-fast);
+}
+
+.header .blb3d-header-cta:hover {
+  background: var(--blb3d-orange-dark);
+  transform: translateY(-1px);
+}
+
+
+/* ==========================================================================
+   5. FOOTER OVERRIDES
+   ========================================================================== */
+
+.footer {
+  background: var(--blb3d-dark);
+  color: var(--blb3d-white);
+  border-top: 1px solid var(--blb3d-dark-border);
+}
+
+.footer__content-top {
+  border-bottom-color: var(--blb3d-dark-border);
+}
+
+.footer h2,
+.footer .footer__title {
+  color: var(--blb3d-white);
+  font-weight: 600;
+}
+
+.footer a {
+  color: var(--blb3d-text-muted);
+  transition: color var(--blb3d-transition-fast);
+}
+
+.footer a:hover {
+  color: var(--blb3d-blue-light);
+}
+
+
+/* ==========================================================================
+   6. COLLECTION LIST / SHOP PREVIEW
+   ========================================================================== */
+
+/* Card Hover Effects */
+.collection-list__item .card {
+  transition: transform var(--blb3d-transition-base), 
+              box-shadow var(--blb3d-transition-base);
+  border-radius: var(--blb3d-radius-lg);
+  overflow: hidden;
+}
+
+.collection-list__item .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(2, 109, 248, 0.15);
+}
+
+.collection-list__item .card__heading {
+  font-weight: 600;
+}
+
+
+/* ==========================================================================
+   7. IMAGE BANNER / HERO OVERRIDES
+   ========================================================================== */
+
+/* Dark Hero Variant */
+.banner--blb3d-dark {
+  background: linear-gradient(135deg, var(--blb3d-dark) 0%, var(--blb3d-dark-lighter) 100%);
+}
+
+.banner--blb3d-dark .banner__heading {
+  color: var(--blb3d-white);
+}
+
+.banner--blb3d-dark .banner__text {
+  color: var(--blb3d-text-muted);
+}
+
+/* Dot Grid Overlay */
+.banner--blb3d-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.banner--blb3d-dark .banner__content {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* ==========================================================================
+   8. IMAGE WITH TEXT OVERRIDES
+   ========================================================================== */
+
+/* Dark Variant */
+.image-with-text--blb3d-dark {
+  background: var(--blb3d-dark);
+}
+
+.image-with-text--blb3d-dark h2 {
+  color: var(--blb3d-white);
+}
+
+.image-with-text--blb3d-dark p,
+.image-with-text--blb3d-dark .image-with-text__text {
+  color: var(--blb3d-text-muted);
+}
+
+/* Light Gray Variant */
+.image-with-text--blb3d-light {
+  background: var(--blb3d-gray-100);
+}
+
+
+/* ==========================================================================
+   9. RICH TEXT / TESTIMONIAL STYLING
+   ========================================================================== */
+
+.rich-text--blb3d-testimonial {
+  background: var(--blb3d-gray-100);
+  padding: var(--blb3d-section-padding) 0;
+}
+
+.rich-text--blb3d-testimonial blockquote,
+.rich-text--blb3d-testimonial .rte {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  line-height: 1.7;
+  font-style: italic;
+  color: var(--blb3d-gray-800);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+
+/* ==========================================================================
+   10. MULTICOLUMN / STATS STYLING
+   ========================================================================== */
+
+.multicolumn--blb3d-stats {
+  text-align: center;
+}
+
+.multicolumn--blb3d-stats .multicolumn-card__info h3 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--blb3d-blue);
+  margin-bottom: 0.25rem;
+}
+
+.multicolumn--blb3d-stats .multicolumn-card__info p {
+  font-size: 1rem;
+  color: var(--blb3d-gray-600);
+  font-weight: 500;
+}
+
+
+/* ==========================================================================
+   11. UTILITY CLASSES
+   ========================================================================== */
+
+.blb3d-text-blue { color: var(--blb3d-blue); }
+.blb3d-text-orange { color: var(--blb3d-orange); }
+.blb3d-text-white { color: var(--blb3d-white); }
+.blb3d-text-muted { color: var(--blb3d-text-muted); }
+
+.blb3d-bg-dark { background-color: var(--blb3d-dark); }
+.blb3d-bg-blue { background-color: var(--blb3d-blue); }
+.blb3d-bg-light { background-color: var(--blb3d-gray-100); }
+.blb3d-bg-white { background-color: var(--blb3d-white); }
+
+.blb3d-section-padding {
+  padding: var(--blb3d-section-padding) 0;
+}
+
+
+/* ==========================================================================
+   12. RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 749px) {
+  :root {
+    --blb3d-section-padding: 48px;
+  }
+  
+  .button--blb3d-primary,
+  .button--blb3d-secondary,
+  .button--blb3d-white,
+  .blb3d-button--primary,
+  .blb3d-button--secondary,
+  .blb3d-button--white {
+    padding: 14px 24px;
+    font-size: 0.9375rem;
+    width: 100%;
+  }
+}
