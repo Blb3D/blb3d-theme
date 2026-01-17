@@ -1,0 +1,149 @@
+{%- comment -%}
+  BLB3D Hero Section
+  Dark gradient background with dot grid overlay
+  Split layout: Text left, image right
+{%- endcomment -%}
+
+{{ 'section-blb3d-hero.css' | asset_url | stylesheet_tag }}
+
+<section class="blb3d-hero">
+  <div class="blb3d-hero__background"></div>
+  
+  <div class="blb3d-hero__container page-width">
+    <div class="blb3d-hero__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="blb3d-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      
+      <h1 class="blb3d-hero__heading">
+        {{ section.settings.heading_line1 }}
+        {%- if section.settings.heading_line2 != blank -%}
+          <span class="blb3d-hero__heading-highlight">{{ section.settings.heading_line2 }}</span>
+        {%- endif -%}
+      </h1>
+      
+      {%- if section.settings.subheading != blank -%}
+        <p class="blb3d-hero__subheading">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+      
+      <div class="blb3d-hero__buttons">
+        {%- if section.settings.button_primary_label != blank -%}
+          <a href="{{ section.settings.button_primary_link }}" class="blb3d-hero__button blb3d-hero__button--primary">
+            {{ section.settings.button_primary_label }}
+          </a>
+        {%- endif -%}
+        
+        {%- if section.settings.button_secondary_label != blank -%}
+          <a href="{{ section.settings.button_secondary_link }}" class="blb3d-hero__button blb3d-hero__button--secondary">
+            {{ section.settings.button_secondary_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+    
+    <div class="blb3d-hero__media">
+      {%- if section.settings.image != blank -%}
+        <img
+          src="{{ section.settings.image | image_url: width: 800 }}"
+          srcset="{{ section.settings.image | image_url: width: 400 }} 400w,
+                  {{ section.settings.image | image_url: width: 600 }} 600w,
+                  {{ section.settings.image | image_url: width: 800 }} 800w"
+          sizes="(max-width: 749px) 100vw, 50vw"
+          alt="{{ section.settings.image.alt | escape }}"
+          loading="eager"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+          class="blb3d-hero__image"
+        >
+      {%- else -%}
+        <div class="blb3d-hero__image-placeholder">
+          {{ 'product-1' | placeholder_svg_tag: 'blb3d-hero__placeholder-svg' }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BLB3D Hero",
+  "tag": "section",
+  "class": "section-blb3d-hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "3D Printing in Fort Wayne, Indiana"
+    },
+    {
+      "type": "text",
+      "id": "heading_line1",
+      "label": "Heading line 1",
+      "default": "From fidgets to fixtures."
+    },
+    {
+      "type": "text",
+      "id": "heading_line2",
+      "label": "Heading line 2 (highlighted)",
+      "default": "We make what you need."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Custom 3D printing for consumers, creators, and businesses. No minimums. Fast turnaround. 100% made in Indiana."
+    },
+    {
+      "type": "header",
+      "content": "Primary button"
+    },
+    {
+      "type": "text",
+      "id": "button_primary_label",
+      "label": "Button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_primary_link",
+      "label": "Button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Secondary button"
+    },
+    {
+      "type": "text",
+      "id": "button_secondary_label",
+      "label": "Button label",
+      "default": "Get a Quote"
+    },
+    {
+      "type": "url",
+      "id": "button_secondary_link",
+      "label": "Button link",
+      "default": "/pages/contact"
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BLB3D Hero"
+    }
+  ]
+}
+{% endschema %}
