@@ -3,7 +3,7 @@
   White background, centered testimonial with stats
 {%- endcomment -%}
 
-<section class="blb3d-social-proof">
+<section class="blb3d-social-proof" style="background: #0F0F1E !important;">
   <div class="blb3d-social-proof__container page-width">
     {%- if section.settings.eyebrow != blank -%}
       <p class="blb3d-eyebrow blb3d-social-proof__eyebrow">{{ section.settings.eyebrow }}</p>
@@ -39,8 +39,14 @@
 </section>
 
 <style>
+  .section-blb3d-social-proof,
+  .section-blb3d-social-proof > *,
   .blb3d-social-proof {
-    background: #FFFFFF !important;
+    background: #0F0F1E !important;
+    background-color: #0F0F1E !important;
+  }
+
+  .blb3d-social-proof {
     padding: 80px 0;
   }
 
@@ -57,7 +63,7 @@
   .blb3d-social-proof__quote {
     font-size: clamp(1.375rem, 3vw, 1.75rem);
     line-height: 1.6;
-    color: var(--blb3d-gray-800);
+    color: #FFFFFF;
     font-style: italic;
     margin: 0 0 1.5rem 0;
     padding: 0;
@@ -73,13 +79,13 @@
 
   .blb3d-social-proof__author-name {
     font-weight: 600;
-    color: var(--blb3d-dark);
+    color: #FFFFFF;
     font-size: 1rem;
   }
 
   .blb3d-social-proof__author-title {
     font-size: 0.875rem;
-    color: var(--blb3d-gray-600);
+    color: rgba(255, 255, 255, 0.7);
   }
 
   .blb3d-social-proof__stats {
@@ -87,7 +93,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     padding-top: 2rem;
-    border-top: 1px solid var(--blb3d-gray-200);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .blb3d-social-proof__stat {
@@ -105,7 +111,7 @@
 
   .blb3d-social-proof__stat-label {
     font-size: 0.9375rem;
-    color: var(--blb3d-gray-600);
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
   }
 
@@ -120,7 +126,7 @@
     }
 
     .blb3d-social-proof__stat:not(:last-child) {
-      border-bottom: 1px solid var(--blb3d-gray-200);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
   }
 </style>
