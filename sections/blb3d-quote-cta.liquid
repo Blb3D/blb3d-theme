@@ -1,0 +1,268 @@
+{%- comment -%}
+  BLB3D Quote CTA Section
+  Dark background, 2-column layout (image left, content right)
+  Features list with orange checkmarks
+{%- endcomment -%}
+
+<section class="blb3d-quote-cta" style="background: #0F0F1E !important;">
+  <div class="blb3d-quote-cta__container page-width">
+    <div class="blb3d-quote-cta__media">
+      {%- if section.settings.image != blank -%}
+        <img
+          src="{{ section.settings.image | image_url: width: 700 }}"
+          srcset="{{ section.settings.image | image_url: width: 400 }} 400w,
+                  {{ section.settings.image | image_url: width: 600 }} 600w,
+                  {{ section.settings.image | image_url: width: 700 }} 700w"
+          sizes="(max-width: 749px) 100vw, 45vw"
+          alt="{{ section.settings.image.alt | escape }}"
+          loading="lazy"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+          class="blb3d-quote-cta__image"
+        >
+      {%- else -%}
+        <div class="blb3d-quote-cta__image-placeholder">
+          {{ 'product-2' | placeholder_svg_tag: 'blb3d-quote-cta__placeholder-svg' }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="blb3d-quote-cta__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="blb3d-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="blb3d-quote-cta__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.description != blank -%}
+        <div class="blb3d-quote-cta__description">
+          {{ section.settings.description }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="blb3d-quote-cta__features">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'feature' -%}
+              <li class="blb3d-quote-cta__feature" {{ block.shopify_attributes }}>
+                <svg class="blb3d-quote-cta__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>{{ block.settings.text }}</span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="blb3d-button--secondary blb3d-quote-cta__button">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-blb3d-quote-cta,
+  .section-blb3d-quote-cta > *,
+  .blb3d-quote-cta {
+    background: #0F0F1E !important;
+    background-color: #0F0F1E !important;
+  }
+
+  .blb3d-quote-cta {
+    padding: 80px 0;
+  }
+
+  .blb3d-quote-cta__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .blb3d-quote-cta__image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--blb3d-radius-lg);
+    object-fit: cover;
+  }
+
+  .blb3d-quote-cta__image-placeholder {
+    background: var(--blb3d-dark-lighter);
+    border-radius: var(--blb3d-radius-lg);
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .blb3d-quote-cta__placeholder-svg {
+    width: 60%;
+    height: auto;
+    opacity: 0.3;
+  }
+
+  .blb3d-quote-cta__heading {
+    color: var(--blb3d-white);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .blb3d-quote-cta__description {
+    color: var(--blb3d-text-muted);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .blb3d-quote-cta__features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .blb3d-quote-cta__feature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--blb3d-white);
+    font-size: 1rem;
+  }
+
+  .blb3d-quote-cta__check {
+    width: 20px;
+    height: 20px;
+    color: var(--blb3d-orange);
+    flex-shrink: 0;
+  }
+
+  .blb3d-quote-cta__button {
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 749px) {
+    .blb3d-quote-cta__container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .blb3d-quote-cta__media {
+      order: -1;
+    }
+
+    .blb3d-quote-cta__button {
+      width: 100%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "BLB3D Quote CTA",
+  "tag": "section",
+  "class": "section-blb3d-quote-cta",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Section label",
+      "default": "Custom Orders"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Need something specific? Let's build it together."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>From prototypes to production runs, we work with you to bring your ideas to life. Upload your files or describe your project and we'll provide a quote within 24 hours.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Request a Quote"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Feature text",
+          "default": "Fast turnaround (3-5 business days)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BLB3D Quote CTA",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "text": "Fast turnaround (3-5 business days)"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "text": "No minimum order quantities"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "text": "Multiple materials and colors"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "text": "Free design consultation"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

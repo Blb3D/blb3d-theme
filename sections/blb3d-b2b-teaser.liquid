@@ -1,0 +1,177 @@
+{%- comment -%}
+  BLB3D B2B Teaser Section
+  Blue gradient background, centered content
+  Promotes business/wholesale services
+{%- endcomment -%}
+
+<section class="blb3d-b2b-teaser" style="background: linear-gradient(135deg, #026DF8 0%, #0155c7 100%) !important;">
+  <div class="blb3d-b2b-teaser__container page-width">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="blb3d-b2b-teaser__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="blb3d-b2b-teaser__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.description != blank -%}
+      <p class="blb3d-b2b-teaser__description">{{ section.settings.description }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.services != blank -%}
+      {%- assign services_list = section.settings.services | split: ',' -%}
+      <ul class="blb3d-b2b-teaser__services">
+        {%- for service in services_list -%}
+          <li class="blb3d-b2b-teaser__service">{{ service | strip }}</li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if section.settings.button_label != blank -%}
+      <a href="{{ section.settings.button_link }}" class="blb3d-button--white blb3d-b2b-teaser__button">
+        {{ section.settings.button_label }}
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .section-blb3d-b2b-teaser,
+  .section-blb3d-b2b-teaser > *,
+  .blb3d-b2b-teaser {
+    background: linear-gradient(135deg, #026DF8 0%, #0155c7 100%) !important;
+    background-color: #026DF8 !important;
+  }
+
+  .blb3d-b2b-teaser {
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .blb3d-b2b-teaser__container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .blb3d-b2b-teaser__eyebrow {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+  }
+
+  .blb3d-b2b-teaser__heading {
+    color: var(--blb3d-white);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .blb3d-b2b-teaser__description {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .blb3d-b2b-teaser__services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 24px;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+  }
+
+  .blb3d-b2b-teaser__service {
+    color: var(--blb3d-white);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .blb3d-b2b-teaser__button {
+    display: inline-flex;
+  }
+
+  @media (max-width: 749px) {
+    .blb3d-b2b-teaser__services {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .blb3d-b2b-teaser__service {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .blb3d-b2b-teaser__button {
+      width: 100%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "BLB3D B2B Teaser",
+  "tag": "section",
+  "class": "section-blb3d-b2b-teaser",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Section label",
+      "default": "For Businesses"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Partner with BLB3D for your business needs"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "From rapid prototyping to production runs, we help businesses bring ideas to life. Volume discounts available for recurring orders."
+    },
+    {
+      "type": "text",
+      "id": "services",
+      "label": "Services list (comma separated)",
+      "default": "Prototyping, Fixtures & Jigs, Custom Parts, Small Batch Production"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BLB3D B2B Teaser"
+    }
+  ]
+}
+{% endschema %}

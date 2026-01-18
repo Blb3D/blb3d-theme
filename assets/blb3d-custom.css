@@ -194,9 +194,25 @@ h3, .h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 /* Override Dawn's color scheme for header */
 .section-header,
 .section-header .header-wrapper,
-.section-header .header {
-  --color-background: 15, 15, 30; /* blb3d-dark in RGB */
-  background-color: var(--blb3d-dark);
+.section-header .header,
+.shopify-section-header,
+.shopify-section-header .header-wrapper,
+.shopify-section-header .header {
+  --color-background: 15, 15, 30 !important;
+  background-color: var(--blb3d-dark) !important;
+  background: var(--blb3d-dark) !important;
+}
+
+/* Force header text white */
+.header__heading-link,
+.header__menu-item span,
+.header__menu-item a,
+.header nav a {
+  color: var(--blb3d-white) !important;
+}
+
+.header__icon {
+  color: var(--blb3d-white) !important;
 }
 
 .header__heading-link {

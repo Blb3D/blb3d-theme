@@ -2,12 +2,20 @@
  * BLB3D Hero Section Styles
  */
 
+/* Section wrapper - override Shopify defaults */
+.section-blb3d-hero {
+  background: #0F0F1E !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
 .blb3d-hero {
   position: relative;
   min-height: 90vh;
   display: flex;
   align-items: center;
   overflow: hidden;
+  background: linear-gradient(135deg, #0F0F1E 0%, #1a1a2e 50%, #0F0F1E 100%);
 }
 
 /* Dark gradient background */

@@ -1,0 +1,212 @@
+{%- comment -%}
+  BLB3D Social Proof Section
+  White background, centered testimonial with stats
+{%- endcomment -%}
+
+<section class="blb3d-social-proof">
+  <div class="blb3d-social-proof__container page-width">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="blb3d-eyebrow blb3d-social-proof__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.testimonial != blank -%}
+      <blockquote class="blb3d-social-proof__quote">
+        "{{ section.settings.testimonial }}"
+      </blockquote>
+    {%- endif -%}
+
+    {%- if section.settings.author != blank -%}
+      <p class="blb3d-social-proof__author">
+        <span class="blb3d-social-proof__author-name">{{ section.settings.author }}</span>
+        {%- if section.settings.author_title != blank -%}
+          <span class="blb3d-social-proof__author-title">{{ section.settings.author_title }}</span>
+        {%- endif -%}
+      </p>
+    {%- endif -%}
+
+    {%- assign stat_blocks = section.blocks | where: 'type', 'stat' -%}
+    {%- if stat_blocks.size > 0 -%}
+      <div class="blb3d-social-proof__stats">
+        {%- for block in stat_blocks -%}
+          <div class="blb3d-social-proof__stat" {{ block.shopify_attributes }}>
+            <span class="blb3d-social-proof__stat-number">{{ block.settings.number }}</span>
+            <span class="blb3d-social-proof__stat-label">{{ block.settings.label }}</span>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .blb3d-social-proof {
+    background: #FFFFFF !important;
+    padding: 80px 0;
+  }
+
+  .blb3d-social-proof__container {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .blb3d-social-proof__eyebrow {
+    margin-bottom: 1.5rem;
+  }
+
+  .blb3d-social-proof__quote {
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
+    line-height: 1.6;
+    color: var(--blb3d-gray-800);
+    font-style: italic;
+    margin: 0 0 1.5rem 0;
+    padding: 0;
+    border: none;
+  }
+
+  .blb3d-social-proof__author {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .blb3d-social-proof__author-name {
+    font-weight: 600;
+    color: var(--blb3d-dark);
+    font-size: 1rem;
+  }
+
+  .blb3d-social-proof__author-title {
+    font-size: 0.875rem;
+    color: var(--blb3d-gray-600);
+  }
+
+  .blb3d-social-proof__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding-top: 2rem;
+    border-top: 1px solid var(--blb3d-gray-200);
+  }
+
+  .blb3d-social-proof__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .blb3d-social-proof__stat-number {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: var(--blb3d-blue);
+    line-height: 1;
+  }
+
+  .blb3d-social-proof__stat-label {
+    font-size: 0.9375rem;
+    color: var(--blb3d-gray-600);
+    font-weight: 500;
+  }
+
+  @media (max-width: 749px) {
+    .blb3d-social-proof__stats {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .blb3d-social-proof__stat {
+      padding: 16px 0;
+    }
+
+    .blb3d-social-proof__stat:not(:last-child) {
+      border-bottom: 1px solid var(--blb3d-gray-200);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "BLB3D Social Proof",
+  "tag": "section",
+  "class": "section-blb3d-social-proof",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Testimonial"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Section label",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial",
+      "label": "Testimonial quote",
+      "default": "BLB3D turned our prototype around in just 48 hours. The quality exceeded our expectations and the team was incredibly responsive throughout the process."
+    },
+    {
+      "type": "text",
+      "id": "author",
+      "label": "Author name",
+      "default": "Mike Johnson"
+    },
+    {
+      "type": "text",
+      "id": "author_title",
+      "label": "Author title / company",
+      "default": "Founder, Local Startup"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistic",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "500+"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Parts Printed"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BLB3D Social Proof",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "number": "500+",
+            "label": "Parts Printed"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "number": "48hr",
+            "label": "Avg Turnaround"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "number": "100%",
+            "label": "Made in Indiana"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,213 @@
+{%- comment -%}
+  BLB3D About Teaser Section
+  Light gray background, 2-column layout
+  Content left, image right
+{%- endcomment -%}
+
+<section class="blb3d-about-teaser" style="background: #F8F9FA !important;">
+  <div class="blb3d-about-teaser__container page-width">
+    <div class="blb3d-about-teaser__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="blb3d-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="blb3d-about-teaser__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.description != blank -%}
+        <div class="blb3d-about-teaser__description">
+          {{ section.settings.description }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.link_label != blank -%}
+        <a href="{{ section.settings.link_url }}" class="blb3d-about-teaser__link">
+          {{ section.settings.link_label }}
+          <svg class="blb3d-about-teaser__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="blb3d-about-teaser__media">
+      {%- if section.settings.image != blank -%}
+        <img
+          src="{{ section.settings.image | image_url: width: 700 }}"
+          srcset="{{ section.settings.image | image_url: width: 400 }} 400w,
+                  {{ section.settings.image | image_url: width: 600 }} 600w,
+                  {{ section.settings.image | image_url: width: 700 }} 700w"
+          sizes="(max-width: 749px) 100vw, 45vw"
+          alt="{{ section.settings.image.alt | escape }}"
+          loading="lazy"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+          class="blb3d-about-teaser__image"
+        >
+      {%- else -%}
+        <div class="blb3d-about-teaser__image-placeholder">
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'blb3d-about-teaser__placeholder-svg' }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-blb3d-about-teaser,
+  .section-blb3d-about-teaser > *,
+  .blb3d-about-teaser {
+    background: #F8F9FA !important;
+    background-color: #F8F9FA !important;
+  }
+
+  .blb3d-about-teaser {
+    padding: 80px 0;
+  }
+
+  .blb3d-about-teaser__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .blb3d-about-teaser__heading {
+    color: var(--blb3d-dark);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .blb3d-about-teaser__description {
+    color: var(--blb3d-gray-600);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .blb3d-about-teaser__description p {
+    margin: 0 0 1rem 0;
+  }
+
+  .blb3d-about-teaser__description p:last-child {
+    margin-bottom: 0;
+  }
+
+  .blb3d-about-teaser__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--blb3d-blue);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: gap var(--blb3d-transition-fast);
+  }
+
+  .blb3d-about-teaser__link:hover {
+    gap: 12px;
+  }
+
+  .blb3d-about-teaser__arrow {
+    width: 20px;
+    height: 20px;
+  }
+
+  .blb3d-about-teaser__image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--blb3d-radius-lg);
+    object-fit: cover;
+  }
+
+  .blb3d-about-teaser__image-placeholder {
+    background: var(--blb3d-gray-200);
+    border-radius: var(--blb3d-radius-lg);
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .blb3d-about-teaser__placeholder-svg {
+    width: 60%;
+    height: auto;
+    opacity: 0.3;
+  }
+
+  @media (max-width: 749px) {
+    .blb3d-about-teaser__container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .blb3d-about-teaser__media {
+      order: -1;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "BLB3D About Teaser",
+  "tag": "section",
+  "class": "section-blb3d-about-teaser",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Section label",
+      "default": "About Us"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Local maker. Global quality."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>BLB3D is a Fort Wayne-based 3D printing studio focused on quality, speed, and customer service. What started as a hobby has grown into a full-service printing operation serving makers, businesses, and everyone in between.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label",
+      "default": "Learn more about us"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BLB3D About Teaser"
+    }
+  ]
+}
+{% endschema %}

@@ -8,6 +8,57 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "BLB3D Brand",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Brand Colors"
+      },
+      {
+        "type": "color",
+        "id": "blb3d_primary_color",
+        "label": "Primary Blue",
+        "default": "#026DF8"
+      },
+      {
+        "type": "color",
+        "id": "blb3d_accent_color",
+        "label": "Accent Orange",
+        "default": "#EE7A08"
+      },
+      {
+        "type": "color",
+        "id": "blb3d_dark_color",
+        "label": "Dark Background",
+        "default": "#0F0F1E"
+      },
+      {
+        "type": "header",
+        "content": "Brand Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "blb3d_logo",
+        "label": "Logo (for dark backgrounds)"
+      },
+      {
+        "type": "image_picker",
+        "id": "blb3d_logo_dark",
+        "label": "Logo (for light backgrounds)"
+      },
+      {
+        "type": "range",
+        "id": "blb3d_logo_width",
+        "min": 50,
+        "max": 250,
+        "step": 10,
+        "default": 120,
+        "unit": "px",
+        "label": "Logo width"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.logo.name",
     "settings": [
       {
