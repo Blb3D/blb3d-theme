@@ -1,0 +1,82 @@
+{
+  "sections": {
+    "pricing": {
+      "type": "blb3d-pricing-tiers",
+      "settings": {
+        "eyebrow": "FilaOps Pricing",
+        "heading_line1": "Simple, Transparent",
+        "heading_line2": "Pricing",
+        "subtitle": "Choose the plan that fits your print farm. Start free, upgrade when you need more.",
+        "show_comparison": true
+      },
+      "blocks": {
+        "community": {
+          "type": "tier",
+          "settings": {
+            "name": "Community",
+            "description": "Open source ERP for small print farms",
+            "price": "Free",
+            "period": "",
+            "features": "Products, BOMs, Inventory|Sales & Production Orders|MRP & Capacity Planning|Self-hosted|Community support",
+            "cta_label": "Download Free",
+            "cta_url": "https://github.com/Blb3D/filaops",
+            "cta_style": "outline",
+            "popular": false,
+            "badge": "",
+            "badge_style": "default"
+          }
+        },
+        "pro": {
+          "type": "tier",
+          "settings": {
+            "name": "PRO",
+            "description": "Everything you need to run a professional print farm",
+            "price": "$79",
+            "period": "/month",
+            "features": "Everything in Community|B2B Customer Portal|Quote Engine|GL Accounting & Schedule C|Shopify Sync|QuickBooks Export|Email Support",
+            "cta_label": "Join Waitlist",
+            "cta_url": "mailto:info@blb3dprinting.com?subject=FilaOps%20PRO%20Waitlist",
+            "cta_style": "primary",
+            "popular": true,
+            "badge": "Most Popular",
+            "badge_style": "default"
+          }
+        },
+        "pro_plus": {
+          "type": "tier",
+          "settings": {
+            "name": "PRO+",
+            "description": "Fleet management and automation for scaling operations",
+            "price": "$149",
+            "period": "/month",
+            "features": "Everything in PRO|Printer Fleet Management|Maintenance Scheduling|AI Agents (3)|Advanced Analytics",
+            "cta_label": "Join Waitlist",
+            "cta_url": "mailto:sales@blb3d.com?subject=PRO%2B%20Waitlist",
+            "cta_style": "secondary",
+            "popular": false,
+            "badge": "Coming Soon",
+            "badge_style": "coming"
+          }
+        },
+        "enterprise": {
+          "type": "tier",
+          "settings": {
+            "name": "Enterprise",
+            "description": "Custom solutions for large-scale operations",
+            "price": "Custom",
+            "period": "",
+            "features": "Everything in PRO+|Full AI Suite (11 agents)|Custom Integrations|SSO & Audit Logging|Priority Support & SLA|Dedicated Account Manager",
+            "cta_label": "Contact Sales",
+            "cta_url": "mailto:sales@blb3d.com?subject=FilaOps%20Enterprise",
+            "cta_style": "outline",
+            "popular": false,
+            "badge": "",
+            "badge_style": "default"
+          }
+        }
+      },
+      "block_order": ["community", "pro", "pro_plus", "enterprise"]
+    }
+  },
+  "order": ["pricing"]
+}

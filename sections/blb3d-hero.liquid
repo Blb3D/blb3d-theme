@@ -8,46 +8,51 @@
 
 <section class="blb3d-hero">
   <div class="blb3d-hero__background"></div>
-  
+
   <div class="blb3d-hero__container page-width">
     <div class="blb3d-hero__content">
       {%- if section.settings.eyebrow != blank -%}
         <p class="blb3d-hero__eyebrow">{{ section.settings.eyebrow }}</p>
       {%- endif -%}
-      
+
       <h1 class="blb3d-hero__heading">
         {{ section.settings.heading_line1 }}
         {%- if section.settings.heading_line2 != blank -%}
           <span class="blb3d-hero__heading-highlight">{{ section.settings.heading_line2 }}</span>
         {%- endif -%}
       </h1>
-      
+
       {%- if section.settings.subheading != blank -%}
         <p class="blb3d-hero__subheading">{{ section.settings.subheading }}</p>
       {%- endif -%}
-      
+
       <div class="blb3d-hero__buttons">
         {%- if section.settings.button_primary_label != blank -%}
           <a href="{{ section.settings.button_primary_link }}" class="blb3d-hero__button blb3d-hero__button--primary">
             {{ section.settings.button_primary_label }}
           </a>
         {%- endif -%}
-        
+
         {%- if section.settings.button_secondary_label != blank -%}
-          <a href="{{ section.settings.button_secondary_link }}" class="blb3d-hero__button blb3d-hero__button--secondary">
+          <a
+            href="{{ section.settings.button_secondary_link }}"
+            class="blb3d-hero__button blb3d-hero__button--secondary"
+          >
             {{ section.settings.button_secondary_label }}
           </a>
         {%- endif -%}
       </div>
     </div>
-    
+
     <div class="blb3d-hero__media">
       {%- if section.settings.image != blank -%}
         <img
           src="{{ section.settings.image | image_url: width: 800 }}"
-          srcset="{{ section.settings.image | image_url: width: 400 }} 400w,
-                  {{ section.settings.image | image_url: width: 600 }} 600w,
-                  {{ section.settings.image | image_url: width: 800 }} 800w"
+          srcset="
+            {{ section.settings.image | image_url: width: 400 }} 400w,
+            {{ section.settings.image | image_url: width: 600 }} 600w,
+            {{ section.settings.image | image_url: width: 800 }} 800w
+          "
           sizes="(max-width: 749px) 100vw, 50vw"
           alt="{{ section.settings.image.alt | escape }}"
           loading="eager"

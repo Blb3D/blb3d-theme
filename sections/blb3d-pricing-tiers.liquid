@@ -1,0 +1,572 @@
+{%- comment -%}
+  BLB3D Pricing Tiers Section
+  FilaOps PRO pricing cards with feature comparison
+  Dark background, 4-column responsive grid
+{%- endcomment -%}
+
+{{ 'blb3d-custom.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .blb3d-pricing {
+    background: var(--blb3d-dark);
+    padding: var(--blb3d-section-padding-mobile) 0;
+    color: var(--blb3d-white);
+  }
+  @media (min-width: 750px) {
+    .blb3d-pricing {
+      padding: var(--blb3d-section-padding) 0;
+    }
+  }
+
+  .blb3d-pricing__header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 48px;
+    padding: 0 1.5rem;
+  }
+
+  .blb3d-pricing__eyebrow {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blb3d-orange);
+    margin-bottom: 12px;
+  }
+
+  .blb3d-pricing__title {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px;
+    line-height: 1.1;
+  }
+
+  .blb3d-pricing__title span {
+    color: var(--blb3d-blue);
+  }
+
+  .blb3d-pricing__subtitle {
+    font-size: 1.125rem;
+    color: var(--blb3d-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .blb3d-pricing__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: var(--blb3d-container-max);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  @media (min-width: 750px) {
+    .blb3d-pricing__grid {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 0 2rem;
+    }
+  }
+  @media (min-width: 990px) {
+    .blb3d-pricing__grid {
+      grid-template-columns: repeat(4, 1fr);
+      padding: 0 2rem;
+    }
+  }
+
+  .blb3d-pricing__card {
+    background: var(--blb3d-dark-lighter);
+    border: 1px solid var(--blb3d-dark-border);
+    border-radius: var(--blb3d-radius-lg);
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform var(--blb3d-transition-base), box-shadow var(--blb3d-transition-base);
+  }
+  .blb3d-pricing__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(2, 109, 248, 0.15);
+  }
+
+  .blb3d-pricing__card--popular {
+    border-color: var(--blb3d-blue);
+    box-shadow: 0 0 0 1px var(--blb3d-blue), 0 8px 30px rgba(2, 109, 248, 0.2);
+  }
+
+  .blb3d-pricing__badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--blb3d-blue);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 16px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .blb3d-pricing__badge--coming {
+    background: var(--blb3d-orange);
+  }
+
+  .blb3d-pricing__tier-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .blb3d-pricing__tier-desc {
+    font-size: 0.875rem;
+    color: var(--blb3d-text-subtle);
+    margin: 0 0 20px;
+    line-height: 1.5;
+    min-height: 42px;
+  }
+
+  .blb3d-pricing__price {
+    margin: 0 0 24px;
+  }
+
+  .blb3d-pricing__amount {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .blb3d-pricing__period {
+    font-size: 0.875rem;
+    color: var(--blb3d-text-subtle);
+    margin-left: 4px;
+  }
+
+  .blb3d-pricing__features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+    flex: 1;
+  }
+
+  .blb3d-pricing__feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 0.875rem;
+    color: var(--blb3d-text-muted);
+    line-height: 1.4;
+  }
+
+  .blb3d-pricing__feature svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .blb3d-pricing__feature--check svg {
+    color: var(--blb3d-blue);
+  }
+
+  .blb3d-pricing__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 14px 24px;
+    border-radius: var(--blb3d-radius-md);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--blb3d-transition-fast);
+    border: 2px solid transparent;
+  }
+
+  .blb3d-pricing__cta--primary {
+    background: var(--blb3d-blue);
+    color: white;
+    border-color: var(--blb3d-blue);
+  }
+  .blb3d-pricing__cta--primary:hover {
+    background: var(--blb3d-blue-dark);
+    transform: translateY(-2px);
+  }
+
+  .blb3d-pricing__cta--secondary {
+    background: transparent;
+    color: var(--blb3d-orange);
+    border-color: var(--blb3d-orange);
+  }
+  .blb3d-pricing__cta--secondary:hover {
+    background: var(--blb3d-orange);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .blb3d-pricing__cta--outline {
+    background: transparent;
+    color: var(--blb3d-text-muted);
+    border-color: var(--blb3d-dark-border);
+  }
+  .blb3d-pricing__cta--outline:hover {
+    border-color: var(--blb3d-blue-light);
+    color: var(--blb3d-white);
+    transform: translateY(-2px);
+  }
+
+  /* Feature Comparison Table */
+  .blb3d-pricing__comparison {
+    max-width: var(--blb3d-container-max);
+    margin: 80px auto 0;
+    padding: 0 1.5rem;
+  }
+
+  .blb3d-pricing__comparison-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 40px;
+    letter-spacing: -0.02em;
+  }
+
+  .blb3d-pricing__table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .blb3d-pricing__table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+  }
+
+  .blb3d-pricing__table th,
+  .blb3d-pricing__table td {
+    padding: 12px 16px;
+    text-align: center;
+    border-bottom: 1px solid var(--blb3d-dark-border);
+    font-size: 0.875rem;
+  }
+
+  .blb3d-pricing__table th {
+    font-weight: 700;
+    color: var(--blb3d-white);
+    background: var(--blb3d-dark-lighter);
+    position: sticky;
+    top: 0;
+  }
+
+  .blb3d-pricing__table th:first-child,
+  .blb3d-pricing__table td:first-child {
+    text-align: left;
+    font-weight: 600;
+    color: var(--blb3d-text-muted);
+  }
+
+  .blb3d-pricing__table tr:hover td {
+    background: rgba(2, 109, 248, 0.05);
+  }
+
+  .blb3d-pricing__table-category {
+    font-weight: 700 !important;
+    color: var(--blb3d-orange) !important;
+    text-transform: uppercase;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.08em;
+    background: rgba(238, 122, 8, 0.05) !important;
+  }
+
+  .blb3d-pricing__check {
+    color: var(--blb3d-blue);
+  }
+  .blb3d-pricing__dash {
+    color: var(--blb3d-dark-border);
+  }
+</style>
+
+<section class="blb3d-pricing">
+  <div class="blb3d-pricing__header">
+    <p class="blb3d-pricing__eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2 class="blb3d-pricing__title">
+      {{ section.settings.heading_line1 }} <span>{{ section.settings.heading_line2 }}</span>
+    </h2>
+    <p class="blb3d-pricing__subtitle">{{ section.settings.subtitle }}</p>
+  </div>
+
+  <div class="blb3d-pricing__grid">
+    {%- for block in section.blocks -%}
+      <div class="blb3d-pricing__card {% if block.settings.popular %}blb3d-pricing__card--popular{% endif %}" {{ block.shopify_attributes }}>
+
+        {%- if block.settings.badge != blank -%}
+          <div class="blb3d-pricing__badge {% if block.settings.badge_style == 'coming' %}blb3d-pricing__badge--coming{% endif %}">
+            {{ block.settings.badge }}
+          </div>
+        {%- endif -%}
+
+        <h3 class="blb3d-pricing__tier-name">{{ block.settings.name }}</h3>
+        <p class="blb3d-pricing__tier-desc">{{ block.settings.description }}</p>
+
+        <div class="blb3d-pricing__price">
+          <span class="blb3d-pricing__amount">{{ block.settings.price }}</span>
+          {%- if block.settings.period != blank -%}
+            <span class="blb3d-pricing__period">{{ block.settings.period }}</span>
+          {%- endif -%}
+        </div>
+
+        <ul class="blb3d-pricing__features">
+          {%- assign features = block.settings.features | split: '|' -%}
+          {%- for feature in features -%}
+            <li class="blb3d-pricing__feature blb3d-pricing__feature--check">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6 11.6L2.7 8.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              {{ feature }}
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        <a href="{{ block.settings.cta_url }}" class="blb3d-pricing__cta blb3d-pricing__cta--{{ block.settings.cta_style | default: 'outline' }}">
+          {{ block.settings.cta_label }}
+        </a>
+      </div>
+    {%- endfor -%}
+  </div>
+
+  {%- if section.settings.show_comparison -%}
+  <div class="blb3d-pricing__comparison">
+    <h3 class="blb3d-pricing__comparison-title">Feature Comparison</h3>
+    <div class="blb3d-pricing__table-wrapper">
+      <table class="blb3d-pricing__table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Community</th>
+            <th>PRO</th>
+            <th>PRO+</th>
+            <th>Enterprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5" class="blb3d-pricing__table-category">Core ERP</td></tr>
+          <tr><td>Products, BOMs, Inventory</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+          <tr><td>Sales & Production Orders</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+          <tr><td>MRP & Capacity Planning</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+
+          <tr><td colspan="5" class="blb3d-pricing__table-category">B2B & Sales</td></tr>
+          <tr><td>B2B Customer Portal</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+          <tr><td>Quote Engine</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+          <tr><td>Customer Price Levels</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+          <tr><td>Catalog Access Control</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+
+          <tr><td colspan="5" class="blb3d-pricing__table-category">Accounting</td></tr>
+          <tr><td>GL & Double-Entry Bookkeeping</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+          <tr><td>Schedule C Tax Reporting</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+          <tr><td>Invoice Parser (PDF/CSV)</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+
+          <tr><td colspan="5" class="blb3d-pricing__table-category">Integrations</td></tr>
+          <tr><td>Shopify Sync</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+          <tr><td>QuickBooks Export</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+
+          <tr><td colspan="5" class="blb3d-pricing__table-category">Automation</td></tr>
+          <tr><td>Printer Fleet Management</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+          <tr><td>AI Agents (3)</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+          <tr><td>Full AI Suite (11 agents)</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+          <tr><td>Custom Integrations & SLA</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+
+          <tr><td colspan="5" class="blb3d-pricing__table-category">Support</td></tr>
+          <tr><td>Community Support</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+          <tr><td>Email Support</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+          <tr><td>Priority Support & SLA</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__dash">&mdash;</td><td class="blb3d-pricing__check">&#10003;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "BLB3D Pricing Tiers",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "FilaOps Pricing"
+    },
+    {
+      "type": "text",
+      "id": "heading_line1",
+      "label": "Heading line 1",
+      "default": "Simple, Transparent"
+    },
+    {
+      "type": "text",
+      "id": "heading_line2",
+      "label": "Heading line 2 (highlighted)",
+      "default": "Pricing"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Choose the plan that fits your print farm. Start free, upgrade when you need more."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_comparison",
+      "label": "Show feature comparison table",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Pricing Tier",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Tier name",
+          "default": "PRO"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Short description"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price display",
+          "default": "$49"
+        },
+        {
+          "type": "text",
+          "id": "period",
+          "label": "Price period",
+          "default": "/month"
+        },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Features (pipe-separated)",
+          "info": "Separate features with | character",
+          "default": "Feature 1|Feature 2|Feature 3"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "Button label",
+          "default": "Get Started"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "Button URL"
+        },
+        {
+          "type": "select",
+          "id": "cta_style",
+          "label": "Button style",
+          "options": [
+            { "value": "primary", "label": "Primary (Blue)" },
+            { "value": "secondary", "label": "Secondary (Orange)" },
+            { "value": "outline", "label": "Outline (Subtle)" }
+          ],
+          "default": "outline"
+        },
+        {
+          "type": "checkbox",
+          "id": "popular",
+          "label": "Highlight as popular",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge text (optional)"
+        },
+        {
+          "type": "select",
+          "id": "badge_style",
+          "label": "Badge style",
+          "options": [
+            { "value": "default", "label": "Blue" },
+            { "value": "coming", "label": "Orange (Coming Soon)" }
+          ],
+          "default": "default"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BLB3D Pricing Tiers",
+      "blocks": [
+        {
+          "type": "tier",
+          "settings": {
+            "name": "Community",
+            "description": "Open source ERP for small print farms",
+            "price": "Free",
+            "period": "",
+            "features": "Products, BOMs, Inventory|Sales & Production Orders|MRP & Capacity Planning|Self-hosted|Community support",
+            "cta_label": "Download Free",
+            "cta_style": "outline",
+            "popular": false
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "name": "PRO",
+            "description": "Everything you need to run a professional print farm",
+            "price": "$49",
+            "period": "/month",
+            "features": "Everything in Community|B2B Customer Portal|Quote Engine|GL Accounting & Schedule C|Shopify Sync|QuickBooks Export|Email Support",
+            "cta_label": "Start Free Trial",
+            "cta_style": "primary",
+            "popular": true,
+            "badge": "Most Popular"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "name": "PRO+",
+            "description": "Fleet management and automation for scaling operations",
+            "price": "$149",
+            "period": "/month",
+            "features": "Everything in PRO|Printer Fleet Management|Maintenance Scheduling|AI Agents (3)|Advanced Analytics",
+            "cta_label": "Join Waitlist",
+            "cta_style": "secondary",
+            "popular": false,
+            "badge": "Coming Soon",
+            "badge_style": "coming"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "name": "Enterprise",
+            "description": "Custom solutions for large-scale operations",
+            "price": "Custom",
+            "period": "",
+            "features": "Everything in PRO+|Full AI Suite (11 agents)|Custom Integrations|SSO & Audit Logging|Priority Support & SLA|Dedicated Account Manager",
+            "cta_label": "Contact Sales",
+            "cta_style": "outline",
+            "popular": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
