@@ -12,14 +12,15 @@
     "blb3d-hero": {
       "type": "blb3d-hero",
       "settings": {
-        "eyebrow": "3D Printing in Fort Wayne, Indiana",
+        "eyebrow": "3D Printing in Huntington, Indiana",
         "heading_line1": "From fidgets to fixtures.",
         "heading_line2": "We make what you need.",
         "subheading": "Custom 3D printing for consumers, creators, and businesses. No minimums. Fast turnaround. 100% made in Indiana.",
         "button_primary_label": "Shop Now",
         "button_primary_link": "shopify://collections/all",
         "button_secondary_label": "Get a Quote",
-        "button_secondary_link": ""
+        "button_secondary_link": "shopify://pages/contact",
+        "image": "shopify://shop_images/3d-printing-process.png"
       }
     },
     "blb3d-featured-collection": {
@@ -61,13 +62,19 @@
           }
         }
       },
-      "block_order": ["feature-1", "feature-2", "feature-3", "feature-4"],
+      "block_order": [
+        "feature-1",
+        "feature-2",
+        "feature-3",
+        "feature-4"
+      ],
       "settings": {
         "eyebrow": "Custom Orders",
         "heading": "Need something specific? Let's build it together.",
         "description": "<p>From prototypes to production runs, we work with you to bring your ideas to life. Upload your files or describe your project and we'll provide a quote within 24 hours.</p>",
         "button_label": "Request a Quote",
-        "button_link": ""
+        "button_link": "shopify://pages/contact",
+        "image": "shopify://shop_images/make-a-suggestion.png"
       }
     },
     "blb3d-social-proof": {
@@ -95,7 +102,11 @@
           }
         }
       },
-      "block_order": ["stat-1", "stat-2", "stat-3"],
+      "block_order": [
+        "stat-1",
+        "stat-2",
+        "stat-3"
+      ],
       "settings": {
         "eyebrow": "What Our Customers Say",
         "testimonial": "BLB3D turned our prototype around in just 48 hours. The quality exceeded our expectations and the team was incredibly responsive throughout the process.",
