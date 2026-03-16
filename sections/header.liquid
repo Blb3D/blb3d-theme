@@ -414,14 +414,7 @@
     {% if settings.logo %}
       "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
     {% endif %}
-            {%- assign social_links_array = '' | split: '' -%}
-              {%- if settings.social_twitter_link != blank -%}{%- assign social_links_array = social_links_array | push: settings.social_twitter_link -%}{%- endif -%}
-                  {%- if settings.social_facebook_link != blank -%}{%- assign social_links_array = social_links_array | push: settings.social_facebook_link -%}{%- endif -%}
-                      {%- if settings.social_instagram_link != blank -%}{%- assign social_links_array = social_links_array | push: settings.social_instagram_link -%}{%- endif -%}
-                          {%- if settings.social_youtube_link != blank -%}{%- assign social_links_array = social_links_array | push: settings.social_youtube_link -%}{%- endif -%}
-                              {%- if social_links_array.size > 0 -%}
-                                  "sameAs": {{ social_links_array | json }},
-                                      {%- endif -%} %}
+                "address": { "@type": "PostalAddress", "addressLocality": "Huntington", "addressRegion": "IN", "addressCountry": "US" },
                                       "url": {{ request.origin | append: page.url | json }}
   }
 </script>
