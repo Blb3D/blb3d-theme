@@ -414,16 +414,14 @@
     {% if settings.logo %}
       "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
     {% endif %}
-        {%- assign social_links = '' -%}
-          {%- if settings.social_twitter_link != blank -%}{%- assign social_links = social_links | append: settings.social_twitter_link | append: ',' -%}{%- endif -%}
-              {%- if settings.social_facebook_link != blank -%}{%- assign social_links = social_links | append: settings.social_facebook_link | append: ',' -%}{%- endif -%}
-                  {%- if settings.social_pinterest_link != blank -%}{%- assign social_links = social_links | append: settings.social_pinterest_link | append: ',' -%}{%- endif -%}
-                      {%- if settings.social_instagram_link != blank -%}{%- assign social_links = social_links | append: settings.social_instagram_link | append: ',' -%}{%- endif -%}
-                          {%- if settings.social_youtube_link != blank -%}{%- assign social_links = social_links | append: settings.social_youtube_link | append: ',' -%}{%- endif -%}
-                              {%- assign social_links_array = social_links | split: ',' | compact -%}
-                                  {%- if social_links_array.size > 0 -%}
-                                      "sameAs": {{ social_links_array | json }},
-                                  {%- endif -%} %}
+            {%- assign social_links_array = '' | split: '' -%}
+              {%- if settings.social_twitter_link != blank -%}{%- assign social_links_array = social_links_array | push: settings.social_twitter_link -%}{%- endif -%}
+                  {%- if settings.social_facebook_link != blank -%}{%- assign social_links_array = social_links_array | push: settings.social_facebook_link -%}{%- endif -%}
+                      {%- if settings.social_instagram_link != blank -%}{%- assign social_links_array = social_links_array | push: settings.social_instagram_link -%}{%- endif -%}
+                          {%- if settings.social_youtube_link != blank -%}{%- assign social_links_array = social_links_array | push: settings.social_youtube_link -%}{%- endif -%}
+                              {%- if social_links_array.size > 0 -%}
+                                  "sameAs": {{ social_links_array | json }},
+                                      {%- endif -%} %}
                                       "url": {{ request.origin | append: page.url | json }}
   }
 </script>
