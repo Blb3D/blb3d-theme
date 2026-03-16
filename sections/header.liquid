@@ -423,8 +423,8 @@
                               {%- assign social_links_array = social_links | split: ',' | compact -%}
                                   {%- if social_links_array.size > 0 -%}
                                       "sameAs": {{ social_links_array | json }},
-                                          {%- endif -%} %}
-    "url": {{ request.origin | append: page.url | json }}
+                                  {%- endif -%} %}
+                                      "url": {{ request.origin | append: page.url | json }}
   }
 </script>
 
