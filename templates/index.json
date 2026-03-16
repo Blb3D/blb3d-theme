@@ -134,6 +134,49 @@
         "link_label": "Learn more about us",
         "link_url": ""
       }
+    },
+    "rich_text_9gBjAj": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_f3yQFP": {
+          "type": "heading",
+          "settings": {
+            "heading": "Custom 3D Printing Services in Indiana",
+            "heading_size": "h1"
+          }
+        },
+        "text_Mm4BRQ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>BLB3D is a custom 3D printing studio based in Huntington, Indiana, proudly serving the Fort Wayne area and beyond. Whether you need a one-off prototype, a replacement part, or a full production run, we handle projects of any size with no minimum order requirements.</p>"
+          }
+        },
+        "button_aH94GY": {
+          "type": "button",
+          "settings": {
+            "button_label": "Get a Free Quote",
+            "button_link": "/pages/contact",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_f3yQFP",
+        "text_Mm4BRQ",
+        "button_aH94GY"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -142,6 +185,7 @@
     "blb3d-quote-cta",
     "blb3d-social-proof",
     "blb3d-b2b-teaser",
-    "blb3d-about-teaser"
+    "blb3d-about-teaser",
+    "rich_text_9gBjAj"
   ]
 }
