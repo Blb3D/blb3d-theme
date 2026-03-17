@@ -298,6 +298,26 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+    {%- comment -%} OpenGraph dynamic OG image - BLB3D Tech Precision {%- endcomment -%}
+    {%- assign og_template_id = "889a05fa-03f8-429d-842c-e70c4b24bf11" -%}
+    {%- assign og_version = "1" -%}
+    {%- assign og_logo = "https://blb3dprinting.com/cdn/shop/files/logo-blb3d-transparent.png?v=1768695405" | url_encode -%}
+    {%- assign og_highlight = "⚡ 3-5 Day Turnaround" | url_encode -%}
+    {%- assign og_cta = "Get a Free Quote" | url_encode -%}
+    {%- if template == "product" -%}
+      {%- assign og_image = product.featured_image | image_url: width: 1200 | url_encode -%}
+      {%- assign og_title = product.title | url_encode -%}
+      {%- assign og_desc = product.description | strip_html | truncate: 120 | url_encode -%}
+    {%- elsif template == "collection" -%}
+      {%- assign og_image = collection.image | image_url: width: 1200 | url_encode -%}
+      {%- assign og_title = collection.title | url_encode -%}
+      {%- assign og_desc = collection.description | strip_html | truncate: 120 | url_encode -%}
+    {%- else -%}
+      {%- assign og_image = "https://blb3dprinting.com/cdn/shop/files/3d-printing-process.png?v=1773533218" | url_encode -%}
+      {%- assign og_title = "Custom 3D Printing Services in Indiana" | url_encode -%}
+      {%- assign og_desc = "From fidgets to fixtures. We make what you need. No minimums. Fast turnaround. 100% made in Indiana." | url_encode -%}
+    {%- endif -%}
+    <meta property="og:image" content="https://ogcdn.net/{{ og_template_id }}/v{{ og_version }}/{{ og_image }}/{{ og_logo }}/{{ og_title }}/{{ og_highlight }}/{{ og_desc }}/{{ og_cta }}/og.png" />
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
